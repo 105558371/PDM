@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout :: head('Manage Doctors')"></head>
+
+<body>
+  <div th:replace="layout :: navbar"></div>
+
+  <div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2 class="text-blood-red">Doctor Management</h2>
+      <a href="/admin/dashboard" class="btn btn-secondary">← Back to Dashboard</a>
+    </div>
+
+    <!-- Search field for doctors -->
+    <form method="get" th:action="@{/admin/doctors}" class="row g-3 mb-4">
+      <div class="col-md-4">
+        <input type="text" name="keyword" class="form-control" placeholder="Search by name or specialization"
+          th:value="${param.keyword}">
+      </div>
+      <div class="col-auto">
+        <button type="submit" class="btn btn-blood-red">Search</button>
+        <a href="/admin/doctors" class="btn btn-secondary">Reset</a>
+      </div>
+    </form>
+
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover">
+        <thead class="table-danger">
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Specialization</th>
+            <th>Assigned Banks</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="doctor : ${doctors}">
+            <td th:text="${doctor.id}">1</td>
+            <td th:text="${doctor.name}">Dr. Smith</td>
+            <td th:text="${doctor.specialization}">Hematologist</td>
+            <td>
+              <span th:if="${#lists.isEmpty(doctor.assignedBanks)}" class="text-muted">None</span>
+              <span th:each="bank, iterStat : ${doctor.assignedBanks}">
+                <span th:if="${!iterStat.first}">, </span>
+                <span th:text="${bank.bankName}"></span>
+              </span>
+            </td>
+          </tr>
+          <tr th:if="${#lists.isEmpty(doctors)}">
+            <td colspan="5" class="text-center text-muted">No doctors found.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div th:replace="layout :: footer"></div>
+</body>
+
+</html>

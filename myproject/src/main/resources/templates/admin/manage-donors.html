@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{layout :: head('Manage Donors')}"></head>
+
+<body>
+  <div th:replace="~{layout :: navbar}"></div>
+
+  <div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2 class="text-blood-red">Donor Management</h2>
+      <a href="/admin/dashboard" class="btn btn-secondary">← Back to Dashboard</a>
+    </div>
+
+    <!-- Flash notifications -->
+    <div th:if="${success}" class="alert alert-success alert-dismissible fade show" role="alert">
+      <span th:text="${success}"></span>
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    <div th:if="${error}" class="alert alert-danger alert-dismissible fade show" role="alert">
+      <span th:text="${error}"></span>
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+
+    <!-- Search form -->
+    <form method="get" th:action="@{/admin/donors}" class="row g-3 mb-4">
+      <div class="col-md-4">
+        <input type="text" name="keyword" class="form-control" placeholder="Search by name or contact"
+          th:value="${param.keyword}">
+      </div>
+      <div class="col-auto">
+        <button type="submit" class="btn btn-blood-red">Search</button>
+        <a href="/admin/donors" class="btn btn-secondary">Reset</a>
+      </div>
+    </form>
+
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover">
+        <thead class="table-danger">
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Blood Type</th>
+            <th>Contact (Phone)</th>
+            <th>Last Donation Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="donor : ${donors}">
+            <td th:text="${donor.id}"></td>
+            <td th:text="${donor.name}"></td>
+            <td><span class="badge bg-danger" th:text="${donor.bloodType}"></span></td>
+            <td th:text="${donor.contact}"></td>
+            <td th:text="${donor.lastDonate != null ? donor.lastDonate : 'Never'}"></td>
+            <td>
+              <form action="/admin/donors/delete" method="post">
+                <input type="hidden" name="donorId" th:value="${donor.id}">
+                <button type="submit" class="btn btn-sm btn-danger" th:data-name="${donor.name}"
+                  onclick="return confirm('Delete donor ' + this.dataset.name + '? This will also remove their donation records.')">
+                  Delete
+                </button>
+              </form>
+            </td>
+          </tr>
+          <tr th:if="${#lists.isEmpty(donors)}">
+            <td colspan="6" class="text-center text-muted">No donors found.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div th:replace="~{layout :: footer}"></div>
+
+</body>
+
+</html>

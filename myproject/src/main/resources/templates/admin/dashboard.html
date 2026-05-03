@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout :: head('Admin Dashboard')"></head>
+
+<body>
+  <div th:replace="layout :: navbar"></div>
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-md-3 mb-3">
+        <div class="card text-center">
+          <div class="card-body">
+            <h5 class="card-title">Low Stock Alerts</h5>
+            <div th:each="entry : ${lowStock}">
+              <p class="text-danger"><span th:text="${entry.key}"></span>: <span th:text="${entry.value}"></span> bags
+                left</p>
+            </div>
+            <div th:if="${#maps.isEmpty(lowStock)}" class="text-success">All banks have sufficient stock.</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div class="card">
+          <div class="card-header">Admin Tools</div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-4"><a href="/admin/donors" class="btn btn-outline-danger w-100">Manage Donors</a></div>
+              <div class="col-md-4"><a href="/admin/doctors" class="btn btn-outline-danger w-100">Manage Doctors</a>
+              </div>
+              <div class="col-md-4"><a href="/admin/requests" class="btn btn-outline-danger w-100">Pending Requests</a>
+              </div>
+              <div class="col-md-4 mt-2"><a href="/admin/record-donation" class="btn btn-outline-danger w-100">Record
+                  Donation</a></div>
+              <div class="col-md-4 mt-2"><a href="/admin/inventory" class="btn btn-outline-danger w-100">View
+                  Inventory</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div th:replace="layout :: footer"></div>
+</body>
+
+</html>

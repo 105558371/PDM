@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout :: head('My Donation History')"></head>
+
+<body>
+  <div th:replace="layout :: navbar"></div>
+  <div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2 class="text-blood-red">My Donation History</h2>
+      <a href="/donor/dashboard" class="btn btn-secondary">← Back to Dashboard</a>
+    </div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Location</th>
+          <th>Donation ID</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="d : ${donations}">
+          <td th:text="${d.date}">2025-01-01</td>
+          <td th:text="${d.donateAddr}">Clinic</td>
+          <td th:text="${d.donationId}">123</td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(donations)}">
+          <td colspan="3" class="text-center">No donations yet.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div th:replace="layout :: footer"></div>
+</body>
+
+</html>

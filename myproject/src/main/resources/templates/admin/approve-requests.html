@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout :: head('Approve Requests')"></head>
+
+<body>
+  <div th:replace="layout :: navbar"></div>
+  <div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2 class="text-blood-red">Pending Blood Requests</h2>
+      <a href="/admin/dashboard" class="btn btn-secondary">← Back to Dashboard</a>
+    </div>
+    <div th:if="${error}" class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>Cannot Approve:</strong> <span th:text="${error}"></span>
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    <div th:if="${success}" class="alert alert-success alert-dismissible fade show" role="alert">
+      <span th:text="${success}"></span>
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Doctor</th>
+          <th>Blood Type</th>
+          <th>Quantity</th>
+          <th>Date</th>
+          <th>Select Bank</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="req : ${requests}">
+          <td th:text="${req.requestId}"></td>
+          <td th:text="${req.doctorName}"></td>
+          <td th:text="${req.bloodType}"></td>
+          <td th:text="${req.quantity}"></td>
+          <td th:text="${req.requestDate}"></td>
+          <td>
+            <form th:action="@{/admin/requests/approve}" method="post" class="d-inline">
+              <input type="hidden" name="requestId" th:value="${req.requestId}">
+              <select name="bankId" class="form-select form-select-sm d-inline w-auto" required>
+                <option th:each="bank : ${banks}" th:value="${bank.bankId}" th:text="${bank.bankName}"></option>
+              </select>
+              <button type="submit" class="btn btn-sm btn-success">Approve</button>
+            </form>
+          </td>
+          <td>
+            <form th:action="@{/admin/requests/reject}" method="post" class="d-inline">
+              <input type="hidden" name="requestId" th:value="${req.requestId}">
+              <button type="submit" class="btn btn-sm btn-danger">Reject</button>
+            </form>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div th:replace="layout :: footer"></div>
+</body>
+
+</html>

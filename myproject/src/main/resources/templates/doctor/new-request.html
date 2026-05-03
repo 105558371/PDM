@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout :: head('New Blood Request')"></head>
+
+<body>
+  <div th:replace="layout :: navbar"></div>
+  <div class="container mt-4" style="max-width: 500px;">
+    <div class="card">
+      <div class="card-header">Request Blood</div>
+      <div class="card-body">
+        <form th:action="@{/doctor/new-request}" method="post">
+          <div class="mb-3">
+            <label>Blood Type</label>
+            <select name="bloodType" class="form-select" required>
+              <option th:each="t : ${ {'A+','A-','B+','B-','O+','O-','AB+','AB-'} }" th:value="${t}" th:text="${t}"></option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label>Quantity (number of bags)</label>
+            <input type="number" name="quantity" class="form-control" min="1" required>
+          </div>
+          <button type="submit" class="btn btn-blood-red">Send Request</button>
+          <a href="/doctor/dashboard" class="btn btn-secondary">Cancel</a>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div th:replace="layout :: footer"></div>
+</body>
+
+</html>

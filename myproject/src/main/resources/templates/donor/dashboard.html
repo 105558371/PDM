@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout :: head('Donor Dashboard')"></head>
+
+<body>
+  <div th:replace="layout :: navbar"></div>
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header">Your Profile</div>
+          <div class="card-body">
+            <p><strong>Name:</strong> <span th:text="${donor.name}"></span></p>
+            <p><strong>Blood Type:</strong> <span th:text="${donor.bloodType}"></span></p>
+            <p><strong>Phone:</strong> <span th:text="${donor.contact}"></span></p>
+            <p><strong>Last Donation:</strong> <span th:text="${donor.lastDonate}"></span></p>
+            <a href="/donor/edit-profile" class="btn btn-outline-danger btn-sm">Edit Profile</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header">Quick Actions</div>
+          <div class="card-body">
+            <a href="/donor/history" class="btn btn-blood-red me-2">View Donation History</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div th:replace="layout :: footer"></div>
+</body>
+
+</html>

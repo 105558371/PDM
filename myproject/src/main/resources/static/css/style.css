@@ -1,0 +1,57 @@
+/* Color Palette */
+body {
+  background-color: #fffff6;
+  /* Ivory */
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Blood Red as primary color */
+.bg-blood-red {
+  background-color: #c00400 !important;
+}
+
+.text-blood-red {
+  color: #c00400 !important;
+}
+
+.btn-blood-red {
+  background-color: #c00400;
+  border-color: #c00400;
+  color: white;
+}
+
+.btn-blood-red:hover {
+  background-color: #a00300;
+  border-color: #a00300;
+}
+
+.border-blood-red {
+  border-color: #c00400 !important;
+}
+
+/* Card styling */
+.card {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.card-header {
+  background-color: #c00400;
+  color: white;
+  font-weight: bold;
+}
+
+.table th {
+  background-color: #f7dfde;
+  color: #c00400;
+}
+
+.badge-low-stock {
+  background-color: #d59b00;
+  color: white;
+}
+
+footer {
+  background-color: #faf3e1;
+  color: #333;
+}

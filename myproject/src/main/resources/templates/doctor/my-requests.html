@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout :: head('My Blood Requests')"></head>
+
+<body>
+  <div th:replace="layout :: navbar"></div>
+  <div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2 class="text-blood-red">My Requests</h2>
+      <a href="/doctor/dashboard" class="btn btn-secondary">← Back to Dashboard</a>
+    </div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Request ID</th>
+          <th>Blood Type</th>
+          <th>Quantity</th>
+          <th>Date</th>
+          <th>Status</th>
+          <th>Bank Assigned</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="req : ${requests}">
+          <td th:text="${req.requestId}">1</td>
+          <td th:text="${req.bloodType}">O+</td>
+          <td th:text="${req.quantity}">2</td>
+          <td th:text="${req.requestDate}">2025-01-01</td>
+          <td>
+            <span th:if="${req.status == 'pending'}" class="badge bg-warning">Pending</span>
+            <span th:if="${req.status == 'approved'}" class="badge bg-success">Approved</span>
+            <span th:if="${req.status == 'rejected'}" class="badge bg-danger">Rejected</span>
+          </td>
+          <td th:text="${req.bankName != null ? req.bankName : '-'}"></td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(requests)}">
+          <td colspan="6" class="text-center">No requests found.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div th:replace="layout :: footer"></div>
+</body>
+
+</html>
