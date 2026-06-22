@@ -20,9 +20,9 @@
       </thead>
       <tbody>
         <tr th:each="d : ${donations}">
-          <td th:text="${d.date}">2025-01-01</td>
-          <td th:text="${d.donateAddr}">Clinic</td>
-          <td th:text="${d.donationId}">123</td>
+          <td th:text="${#temporals.format(d.date, 'yyyy-MM-dd HH:mm:ss')}"></td>
+          <td th:text="${d.donateAddr}"></td>
+          <td th:text="${d.donationId}"></td>
         </tr>
         <tr th:if="${#lists.isEmpty(donations)}">
           <td colspan="3" class="text-center">No donations yet.</td>

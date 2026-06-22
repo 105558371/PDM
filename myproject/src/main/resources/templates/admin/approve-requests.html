@@ -36,7 +36,7 @@
           <td th:text="${req.doctorName}"></td>
           <td th:text="${req.bloodType}"></td>
           <td th:text="${req.quantity}"></td>
-          <td th:text="${req.requestDate}"></td>
+          <td th:text="${#temporals.format(req.requestDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
           <td>
             <form th:action="@{/admin/requests/approve}" method="post" class="d-inline">
               <input type="hidden" name="requestId" th:value="${req.requestId}">

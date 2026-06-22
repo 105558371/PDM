@@ -54,8 +54,11 @@ public class DonationService {
       bag.setStatus("available");
       bag.setBankId(bankId);
       bag.setDonationId(donationId);
-      inventoryRepository.save(bag); // expdate is set by trigger
+      inventoryRepository.save(bag);
     }
+
+    // 3. Explicitly update the donor's last donation date
+    donorRepository.updateLastDonateDate(donorId, donation.getDate());
 
     return donationId;
   }

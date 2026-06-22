@@ -1,8 +1,10 @@
 package com.example.myproject.model;
 
+import java.time.LocalDateTime;
+
 public class Donor extends Person {
   private String bloodType;
-  private String lastDonate;
+  private LocalDateTime lastDonate;
 
   @Override
   public String getRoleLabel() {
@@ -17,11 +19,11 @@ public class Donor extends Person {
     this.bloodType = bloodType;
   }
 
-  public String getLastDonate() {
+  public LocalDateTime getLastDonate() {
     return lastDonate;
   }
 
-  public void setLastDonate(String lastDonate) {
+  public void setLastDonate(LocalDateTime lastDonate) {
     this.lastDonate = lastDonate;
   }
 }
