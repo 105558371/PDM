@@ -1,5 +1,5 @@
 -- ============================================================
--- CLEAN EXISTING TEST DATA
+-- CLEAN EXISTING DATA
 -- ============================================================
 SET FOREIGN_KEY_CHECKS = 0;
 DELETE FROM Blood_Requests;
@@ -27,17 +27,17 @@ ALTER TABLE Blood_Requests AUTO_INCREMENT = 1;
 -- 1. USERS (password = '123')
 -- ============================================================
 INSERT INTO Users (username, password, role) VALUES
-('donor_thu',    '$2a$10$N9qo8uLOickgx2ZMRZoMy.Mr4K2gT6bW5Z5tUJ4eW5Z5tUJ4eEe', 'donor'),
-('donor_phong',    '$2a$10$N9qo8uLOickgx2ZMRZoMy.Mr4K2gT6bW5Z5tUJ4eW5Z5tUJ4eEe', 'donor'),
-('donor_ha',     '$2a$10$N9qo8uLOickgx2ZMRZoMy.Mr4K2gT6bW5Z5tUJ4eW5Z5tUJ4eEe', 'donor'),
-('donor_han',        '$2a$10$N9qo8uLOickgx2ZMRZoMy.Mr4K2gT6bW5Z5tUJ4eW5Z5tUJ4eEe', 'donor'),
-('donor_kien',       '$2a$10$N9qo8uLOickgx2ZMRZoMy.Mr4K2gT6bW5Z5tUJ4eW5Z5tUJ4eEe', 'donor'),
-('donor_ky',   '$2a$10$N9qo8uLOickgx2ZMRZoMy.Mr4K2gT6bW5Z5tUJ4eW5Z5tUJ4eEe', 'donor'),
-('donor_tam',     '$2a$10$N9qo8uLOickgx2ZMRZoMy.Mr4K2gT6bW5Z5tUJ4eW5Z5tUJ4eEe', 'donor'),
-('doctor_minh',       '$2a$10$N9qo8uLOickgx2ZMRZoMy.Mr4K2gT6bW5Z5tUJ4eW5Z5tUJ4eEe', 'doctor'),
-('doctor_hoa',        '$2a$10$N9qo8uLOickgx2ZMRZoMy.Mr4K2gT6bW5Z5tUJ4eW5Z5tUJ4eEe', 'doctor'),
-('doctor_tuan',       '$2a$10$N9qo8uLOickgx2ZMRZoMy.Mr4K2gT6bW5Z5tUJ4eW5Z5tUJ4eEe', 'doctor'),
-('admin',         '$2a$10$N9qo8uLOickgx2ZMRZoMy.Mr4K2gT6bW5Z5tUJ4eW5Z5tUJ4eEe', 'admin');
+('donor_thu',    '$2a$10$Lu.u56JikrOfVGWsAftTrOtuGPnL/JLmW/ezvJ3zllEu4HN5nrtle', 'donor'),
+('donor_phong',    '$2a$10$Lu.u56JikrOfVGWsAftTrOtuGPnL/JLmW/ezvJ3zllEu4HN5nrtle', 'donor'),
+('donor_ha',     '$2a$10$Lu.u56JikrOfVGWsAftTrOtuGPnL/JLmW/ezvJ3zllEu4HN5nrtle', 'donor'),
+('donor_han',        '$2a$10$Lu.u56JikrOfVGWsAftTrOtuGPnL/JLmW/ezvJ3zllEu4HN5nrtle', 'donor'),
+('donor_kien',       '$2a$10$Lu.u56JikrOfVGWsAftTrOtuGPnL/JLmW/ezvJ3zllEu4HN5nrtle', 'donor'),
+('donor_ky',   '$2a$10$Lu.u56JikrOfVGWsAftTrOtuGPnL/JLmW/ezvJ3zllEu4HN5nrtle', 'donor'),
+('donor_tam',     '$2a$10$Lu.u56JikrOfVGWsAftTrOtuGPnL/JLmW/ezvJ3zllEu4HN5nrtle', 'donor'),
+('doctor_minh',       '$2a$10$Lu.u56JikrOfVGWsAftTrOtuGPnL/JLmW/ezvJ3zllEu4HN5nrtle', 'doctor'),
+('doctor_hoa',        '$2a$10$Lu.u56JikrOfVGWsAftTrOtuGPnL/JLmW/ezvJ3zllEu4HN5nrtle', 'doctor'),
+('doctor_tuan',       '$2a$10$Lu.u56JikrOfVGWsAftTrOtuGPnL/JLmW/ezvJ3zllEu4HN5nrtle', 'doctor'),
+('admin',         '$2a$10$Lu.u56JikrOfVGWsAftTrOtuGPnL/JLmW/ezvJ3zllEu4HN5nrtle', 'admin');
 
 -- ============================================================
 -- 2. DONORS
@@ -120,8 +120,10 @@ INSERT INTO Blood_Requests (blood_type, quantity, request_date, status, doctor_i
 -- ============================================================
 -- VERIFICATION QUERIES (optional)
 -- ============================================================
-SELECT * FROM Donors;
-SELECT * FROM Doctors;
-SELECT * FROM Blood_Banks;
-SELECT * FROM Blood_Inventory;
-SELECT * FROM Blood_Requests;
+-- SELECT * FROM Donors;
+-- SELECT * FROM Doctors;
+-- SELECT * FROM Blood_Banks;
+-- SELECT * FROM Blood_Inventory;
+-- SELECT * FROM Blood_Requests;
+-- Test Bcrypt hased password length (should be 60 characters)
+-- SELECT username, LENGTH(password) FROM Users;
